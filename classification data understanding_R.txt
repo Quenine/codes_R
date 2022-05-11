@@ -40,7 +40,7 @@ library(skimr)
 
 skim(****) # Perform skim to display summary statistics
 
-# Group data by Species then perform skim
+# Group data by classificationvariable then perform skim
 **** %>% 
   dplyr::group_by(classificationvariable) %>% 
   skim() 
