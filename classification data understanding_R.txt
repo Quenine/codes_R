@@ -1,0 +1,76 @@
+####################################
+# Que                  #
+####################################
+
+#########################
+# Loading **** data set
+#########################
+
+# install.packages("RCurl")
+
+library(RCurl)
+**** <- read.csv(text = getURL("https://raw.githubusercontent.com/****.csv") )
+
+# View the data
+View(****)
+
+#############################
+# Display summary statistics
+#############################
+
+# head() / tail()
+head(****, 5)
+tail(****, 5)
+
+
+# summary()
+summary(****)
+summary(****$anycolumn)
+
+
+# Check to see if there are missing data?
+sum(is.na(****))
+
+
+# skimr() - expands on summary() by providing larger set of statistics
+#  install.packages("skimr")
+# https://github.com/ropensci/skimr
+
+library(skimr)
+
+skim(****) # Perform skim to display summary statistics
+
+# Group data by Species then perform skim
+**** %>% 
+  dplyr::group_by(classificationvariable) %>% 
+  skim() 
+
+#############################
+# Quick data visualization
+#
+# R base plot()
+#############################
+
+
+# Panel plots
+plot(****)
+plot(iris, col = "red")
+
+# Scatter plot
+plot(****$column*, ****$column**)   #whichever column of interest
+
+plot(****$column*, ****$column**, col = "red",     # Makes red circles + Adds x and y axis labels
+     xlab = "correct label1", ylab = "correct label2")
+
+# Histogram
+hist(****$column*)
+hist(****$column*, col = "red")   # Makes red bars
+
+# Feature plots
+# https://www.machinelearningplus.com/machine-learning/caret-package/
+featurePlot(x = ****[,1:4],   #[,1:4 or total number of columns that describe the class]
+            y = ****$class, 
+            plot = "box",
+            strip=strip.custom(par.strip.text=list(cex=.7)),
+            scales = list(x = list(relation="free"), 
+                          y = list(relation="free")))
